@@ -1,0 +1,9 @@
+.navbar-brand img {
+    width: 180px;
+}
+
+body {
+    background: #28297e;
+    background: -webkit-linear-gradient(to right, #4c9b94, #4795c2);
+    background: linear-gradient(to right, #134757, #3a3c46);
+}
