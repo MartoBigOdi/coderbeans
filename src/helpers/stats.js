@@ -3,19 +3,19 @@
 const { Comment, Image } = require('../models');
 
 
-const imageCounter = async () => {
+async function imageCounter () {
     //countDocuments(): Se encarga de devolvernos el total de las imagenes. Busca y cuenta dentro de la base de datos.
 //Este método es una función async.
    return await Image.countDocuments();
 }
 
-const commentCounter = async () => {
+async function commentCounter () {
     //countDocuments(): Se encarga de devolvernos el total de las imagenes. Busca y cuenta dentro de la base de datos.
 //Este método es una función async.
    return await Comment.countDocuments();
 }
 
-const imageTotalViewCounter = async () => {
+ async function imageTotalViewCounter () {
     //Para sumar todas las views de las images vamos a utilzar un método de moongoDB. 
     const results = await Image.aggregate([{
         $group: {
@@ -27,7 +27,7 @@ const imageTotalViewCounter = async () => {
 
 }
 
-const likesTotalCounter =  async () => {
+async function likesTotalCounter () {
     //Para sumar todas los likes de las images vamos a utilzar un método de moongoDB. 
     const results = await Image.aggregate([{
         $group: {
