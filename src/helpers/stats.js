@@ -3,19 +3,19 @@
 const { Comment, Image } = require('../models');
 
 
-async function imageCounter () {
+const imageCounter = async () => {
     //countDocuments(): Se encarga de devolvernos el total de las imagenes. Busca y cuenta dentro de la base de datos.
 //Este método es una función async.
    return await Image.countDocuments();
 }
-
-async function commentCounter () {
+ 
+const commentCounter = async () => {
     //countDocuments(): Se encarga de devolvernos el total de las imagenes. Busca y cuenta dentro de la base de datos.
 //Este método es una función async.
    return await Comment.countDocuments();
 }
 
- async function imageTotalViewCounter () {
+ const imageTotalViewCounter = async () => {
     //Para sumar todas las views de las images vamos a utilzar un método de moongoDB. 
     const results = await Image.aggregate([{
         $group: {
@@ -27,7 +27,7 @@ async function commentCounter () {
 
 }
 
-async function likesTotalCounter () {
+const likesTotalCounter = async () => {
     //Para sumar todas los likes de las images vamos a utilzar un método de moongoDB. 
     const results = await Image.aggregate([{
         $group: {
@@ -39,7 +39,7 @@ async function likesTotalCounter () {
 }
 
 
-module.export = async () => {
+module.exports = async () => {
 //Con Promise.all() logramos que todas las funciones async que tenemos se eejecuten al mismo tiempo.
    const results = await Promise.all([
        //Esto me va a retornar un arrelgo de valores. [50,120,100,500]
@@ -49,7 +49,7 @@ module.export = async () => {
         likesTotalCounter()
     ]);
     //Acá vamos a 'return' un objeto para poder trabajar lo dsp con otra función. 
-    return{
+    return {
         //Las posiciones son de acuerdo a la organización que tengan arriba los valores del array devuelto previamente.
         image: results[0],
         comments:results[1],
@@ -58,3 +58,4 @@ module.export = async () => {
     };
 
 };
+

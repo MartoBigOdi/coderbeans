@@ -1,6 +1,6 @@
 //Acá importamos el modelo de las imagenes.
 //Con destruction traemos el modelo.
-const { Image } = require('../models/image');
+const { Image } = require('../models');
 
 //Acá lo exportamos. 
 module.exports = {
@@ -10,9 +10,9 @@ module.exports = {
     async popular() {
        const images = await Image.find()
             //Nos devuelve un límite de 10
-            .limit(10)
+            .limit(9)
             //Acá las ordenamos de manera inversa, o sea de las más populares a las menos por eso el -1. 
-            .sort({likes: -1}) 
+            .sort({likes: -1}); 
        return images;
     }
-}
+};

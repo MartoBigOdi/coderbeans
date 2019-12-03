@@ -1,6 +1,6 @@
 const {Comment, Image} = require('../models');
 
-module.export = {
+module.exports = {
 
     async nuevosComentarios() {
         const comments = await Comment.find()

@@ -7,8 +7,7 @@ const Comments = require('./comments');
 //Exportamos el modelo de datos
 module.exports = async viewModel => {
     //En vez de ponerle await a cada una de las funciones le hacemos un promise.all()
-    await Promise.all([ 
-
+    const results = await Promise.all([ 
         Stats(),//Este es un objeto.
         Images.popular(), //Este es un arrays.
         Comments.nuevosComentarios()//Este es un array.
@@ -18,7 +17,7 @@ module.exports = async viewModel => {
         stats: results[0],
         popular: results[1],
         comments: results[2]
-    }
+    };
 
     return viewModel;
 };
