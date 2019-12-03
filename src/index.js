@@ -12,7 +12,7 @@ const app = configs(express());
 app.listen(app.get('port'), () => {
     console.log('Server on Port'.rainbow.italic, app.get('port'));
     figlet.text('CoderBeans', {
-    font: 'univers',
+    font: 'doom',
     horizontalLayout: 'default',
     verticalLayout: 'default'
 }, function(err, data) {
