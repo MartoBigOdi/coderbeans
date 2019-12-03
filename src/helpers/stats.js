@@ -17,7 +17,8 @@ const commentCounter = async () => {
 
 const imageTotalViewCounter = async () => {
     //Para sumar todas las views de las images vamos a utilzar un método de moongoDB. 
-    const results = await Image.aggregate([{$group: {
+    const results = await Image.aggregate([{
+        $group: {
             _id:'1',
             viewsTotal: {$sum: '$views'}
     }}]);
@@ -26,11 +27,12 @@ const imageTotalViewCounter = async () => {
 
 }
 
-const likesTotalCounter = () => {
+const likesTotalCounter =  async () => {
     //Para sumar todas los likes de las images vamos a utilzar un método de moongoDB. 
-    const results = Image.aggregate([{$gropu: {
-        _id:'1',
-        likesTotal: {$sum: '$likes'}
+    const results = await Image.aggregate([{
+        $group: {
+            _id:'1',
+            likesTotal: {$sum: '$likes'}
     }}]);
     //Acá vamos a retornar la suma de las imagenes. 
     return results[0].likesTotal;

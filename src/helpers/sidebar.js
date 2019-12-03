@@ -22,3 +22,5 @@ module.exports = async viewModel => {
 
     return viewModel;
 };
+
+//Acá exportamos solo una función.

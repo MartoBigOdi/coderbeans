@@ -5,6 +5,9 @@ const ctrl = {};
 //traemos el modelo desde la carpeta models, index.js
 const { Image } = require('../models');
 
+//Acá imoprtamos la función del modulo del archivo sidebar.js
+const sideBar = require('../helpers/sidebar');
+
 
 //Acá ordenamos mediante el controlador la vista index según vamos subiendo las imagenes o la info que subamos.
 ctrl.index = async (req, res) => {
