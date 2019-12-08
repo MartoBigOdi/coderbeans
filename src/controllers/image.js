@@ -6,7 +6,7 @@ const fs = require('fs-extra');//De este módulo vamos a utilizar 'rename' que n
 
 
 const { Image, Comment } = require('../models/index');//Estamos importanto un modelo. Para Guardar las imagenes en la base de datos.
-
+const sidebar = require('../helpers/sidebar');
 
 const ctrl = {};
 
@@ -15,7 +15,7 @@ const ctrl = {};
 
 //Acá nos ocupamos de mostrar nuestro index. Este controlador se encarga de mostrarnos la vista.
 ctrl.index = async (req, res) => {
-    const viewModel = { image: {}, comments: {}};
+    let viewModel = { image: {}, comments: {}};
 
     const image = await Image.findOne({filename: {$regex: req.params.image_id}}); //En esta linea estamos buscando en mongo db un archivo que hayamos guardado pero no con el nombre completo sino con una parte de el, en este caso es el image_id sin le extensión.
     //Acá le indicamos desde el controlador a la vista que cada vez que refrescamos este slash, o ruta le sume una vista a 'image.views'(image.views recordemos que es una propiedad del modelo de nuestra base de datos que esta en 0). De esta manera podemos sumar un view cada vez que se ve la imagen seleccionada por esta ruta.
@@ -25,6 +25,7 @@ ctrl.index = async (req, res) => {
         await image.save();
         const comments =  await Comment.find({image_id: image._id});//Esta petición nos trae los comments relacionados con esta imagen que le pedimos por Id.
         viewModel.comments = comments;
+        viewModel = await sidebar(viewModel);
         res.render('image', viewModel);
     } else {
         res.redirect('/');

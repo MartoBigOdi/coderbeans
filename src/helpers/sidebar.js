@@ -5,6 +5,7 @@ const Images = require('./images');
 const Comments = require('./comments');
 
 //Exportamos el modelo de datos
+//Acá utilizamos ES6, primero Async y await. Luego utilizamos el parametro sin () porque es un solo parametro. y todo esto lo hacemos con una arrow function.
 module.exports = async viewModel => {
     //En vez de ponerle await a cada una de las funciones le hacemos un promise.all()
     const results = await Promise.all([ 
@@ -13,7 +14,7 @@ module.exports = async viewModel => {
         Comments.nuevosComentarios()//Este es un array.
     ]);
     
-    viewModel.sideBar = {
+    viewModel.sidebar = {
         stats: results[0],
         popular: results[1],
         comments: results[2]

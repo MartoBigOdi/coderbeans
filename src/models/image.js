@@ -12,6 +12,7 @@ const ImageSchema = new Schema({
     timestamp: { type: Date, default: Date.now }
 });
 
+//Acá nosotros gracias a moongose solamente hacemos poblamos una varible sin llevarle a la base de datos. y se utliliza solo cuando se llama a esa variable. Creamos una propiedad virtual.
 //Vamos a crear un Id para de manera Virtual ya que cuando busquemos la imagen, a esta la vamos buscar sin la ext por ej .png o la que sea.
 ImageSchema.virtual('uniqueId')
 .get(function(){

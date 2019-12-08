@@ -14,5 +14,14 @@ const CommentSchema = new Schema ({
     gravatar: { type: String}
 });
 
+//Vamos a crear una propiedad virtual.
+CommentSchema.virtual('image')
+    .set(function(image) {
+        this._image = image;
+    })
+    .get(function(){
+        return this._image;
+    });
+
 //Acá exportamos el modelo. (Primero le damos nombre al modelo y como segundo parametro llamamos al modelo que creamos.)
 module.exports = model('Comment', CommentSchema);

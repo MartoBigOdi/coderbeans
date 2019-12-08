@@ -10,6 +10,7 @@ const ctrl = {};
 
 //Acá ordenamos mediante el controlador la vista index según vamos subiendo las imagenes o la info que subamos.
 ctrl.index = async (req, res) => {
+    try {
     const images = await Image
     .find()
     .sort({timestamp: -1});
@@ -20,6 +21,10 @@ ctrl.index = async (req, res) => {
     res.render('index', viewModel);
     console.log(viewModel);
     console.log(sidebar);
+    }
+    catch (err) {
+        console.log(err);
+    };
 };
 
 

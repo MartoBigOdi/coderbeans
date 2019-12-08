@@ -40,22 +40,26 @@ const likesTotalCounter = async () => {
 
 
 module.exports = async () => {
-//Con Promise.all() logramos que todas las funciones async que tenemos se eejecuten al mismo tiempo.
-   const results = await Promise.all([
-       //Esto me va a retornar un arrelgo de valores. [50,120,100,500]
-        imageCounter(),
-        commentCounter(),
-        imageTotalViewCounter(),
-        likesTotalCounter()
-    ]);
-    //Acá vamos a 'return' un objeto para poder trabajar lo dsp con otra función. 
-    return {
-        //Las posiciones son de acuerdo a la organización que tengan arriba los valores del array devuelto previamente.
-        image: results[0],
-        comments:results[1],
-        views: results[2],
-        likes: results[3]
+    try {
+            //Con Promise.all() logramos que todas las funciones async que tenemos se eejecuten al mismo tiempo.
+            const results = await Promise.all([
+                //Esto me va a retornar un arrelgo de valores. [50,120,100,500]
+                    imageCounter(),
+                    commentCounter(),
+                    imageTotalViewCounter(),
+                    likesTotalCounter()
+                ]);
+                //Acá vamos a 'return' un objeto para poder trabajar lo dsp con otra función. 
+                return {
+                    //Las posiciones son de acuerdo a la organización que tengan arriba los valores del array devuelto previamente.
+                    images: results[0],
+                    comments:results[1],
+                    views: results[2],
+                    likes: results[3]
+                };
+    }
+    catch(err){
+        console.log(err);
     };
-
 };
 
